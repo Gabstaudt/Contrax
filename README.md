@@ -1,4 +1,5 @@
-#Contrax
+
+
 Contrax é uma plataforma digital voltada para a gestão inteligente de contratos jurídicos e administrativos, desenvolvida especialmente para atender as necessidades de pequenas e médias empresas que não possuem estrutura para ferramentas caras e complexas.
 
 A proposta do sistema é centralizar, organizar e automatizar processos relacionados a contratos — desde o upload e análise inteligente até o monitoramento de vencimentos e assinatura digital.
