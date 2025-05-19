@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Empresa</title>
+  <link rel="stylesheet" href="cadastroAdm.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-left">
+      <img src="/assets/FotoLogin.png" alt="Equipe corporativa" />
+    </div>
+
+    <div class="login-right">
+      <h1 class="brand">Contrax</h1>
+      <h2 class="login-title left-align">Crie sua conta como administrador</h2>
+
+      <form id="cadastroEmpresaForm">
+        <label for="empresa">Nome da empresa</label>
+        <input type="text" id="empresa" required />
+
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" required />
+
+        <label for="ramo">Ramo de atuação</label>
+        <input type="text" id="ramo" required />
+
+        <label for="tamanho">Tamanho da empresa</label>
+        <input type="text" id="tamanho" required />
+
+        <button type="submit" onclick="window.location.href='../CadastroAdm2/cadastroAdm2.html'">Prosseguir</button>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>

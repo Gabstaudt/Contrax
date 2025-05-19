@@ -1,0 +1,105 @@
+.cadastro-container {
+  display: flex;
+  height: 100vh;
+}
+
+.cadastro-left, .cadastro-right {
+  width: 50%;
+}
+
+.cadastro-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 70px;
+  font-weight: 600;
+  color: #002D77;
+  text-align: center;
+  margin-bottom: 95px;
+}
+
+.subtitle {
+  font-size: 28px;
+  color: #002D77;
+  font-weight: 600;
+  margin-bottom: 130px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.card-option {
+  width: 520px;
+  height: 120px;
+  border: 1px solid #002D77;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 72px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card-option:hover {
+  background-color: #F2F6FC;
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background-color: #EBEFF7;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 42px;
+}
+
+.icon-box img {
+  width: 40px;
+  height: 40px;
+}
+
+.card-option {
+  text-decoration: none;
+  color: inherit;
+}
+
+.text-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-title {
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  color: #002D77;
+  margin-bottom: -10px;
+
+  
+}
+
+.option-desc {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  color: #002D77;
+}
+
+.cadastro-right {
+  position: relative;
+}
+
+.cadastro-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+

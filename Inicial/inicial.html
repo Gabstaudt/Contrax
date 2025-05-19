@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Contrax</title>
+  <link rel="stylesheet" href="inicial.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- NAVBAR SUPERIOR -->
+<header class="navbar">
+  <div class="logo">Contrax</div>
+  <div class="nav-icons">
+    <img src="img/pesquisa.png" alt="Pesquisar" class="nav-icon" />
+    <img src="img/notif.png" alt="Notificações" class="nav-icon" />
+      <img src="img/profile.png" alt="Perfil" class="nav-icon perfil-icon" />
+
+  </div>
+</header>
+
+
+    <div class="layout">
+      <!-- SIDEBAR -->
+    <aside class="sidebar">
+  <ul>
+    <li class="nav-item active">
+      <div class="icon-wrapper">
+        <img src="img/sideicon/dash.svg" alt="Dashboard" />
+      </div>
+      <span class="label">Dashboard</span>
+    </li>
+
+    <li class="nav-item">
+      <div class="icon-wrapper">
+        <img src="img/sideicon/Folder.svg" alt="Contratos" />
+      </div>
+      <span class="label">Contratos</span>
+    </li>
+
+    <li class="nav-item">
+      <div class="icon-wrapper">
+        <img src="img/sideicon/Upload.svg" alt="Upload" />
+      </div>
+      <span class="label">Upload</span>
+    </li>
+
+    <li class="nav-item">
+      <div class="icon-wrapper">
+        <img src="img/sideicon/User.svg" alt="Conta" />
+      </div>
+      <span class="label">Minha Conta</span>
+    </li>
+  </ul>
+</aside>
+
+
+      <!-- CONTEÚDO PRINCIPAL -->
+      <main class="main-content">
+        <h1 class="page-title">Dashboard</h1>
+
+        <!-- CARDS -->
+        <div class="cards">
+          <div class="card azul">
+            <h2>25</h2>
+            <p>Contratos Ativos</p>
+          </div>
+          <div class="card azul-claro">
+            <h2>5</h2>
+            <p>Contratos Expiram em Breve</p>
+          </div>
+          <div class="card laranja">
+            <h2>5</h2>
+            <p>Expirados</p>
+          </div>
+        </div>
+
+        <!-- TABELA -->
+   <h2 class="table-title">Visão geral dos contratos</h2>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Vencimento</th>
+        <th>Valor</th>
+        <th>Status</th>
+        <th>Partes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Contrato A</td>
+        <td>10/12/2025</td>
+        <td>R$ 12.000,00</td>
+        <td><span class="status ativo">Ativo</span></td>
+        <td>👥👥</td>
+      </tr>
+      <tr>
+        <td>Contrato B</td>
+        <td>20/08/2023</td>
+        <td>R$ 8.000,00</td>
+        <td><span class="status vencido">Vencido</span></td>
+        <td>👥</td>
+      </tr>
+      <tr>
+        <td>Contrato C</td>
+        <td>05/06/2024</td>
+        <td>R$ 15.500,00</td>
+        <td><span class="status avencer">A vencer</span></td>
+        <td>👥👥👥</td>
+      </tr>
+      <tr>
+        <td>Contrato D</td>
+        <td>15/01/2026</td>
+        <td>R$ 6.200,00</td>
+        <td><span class="status inativo">Inativo</span></td>
+        <td>👥</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>
