@@ -60,3 +60,4 @@ sidebar = sidebar
   .replace('{{upload}}', '')
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
+

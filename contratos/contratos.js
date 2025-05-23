@@ -69,3 +69,44 @@ sidebar = sidebar
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
 console.log('[✔] Sidebar carregada e atualizada');
+
+document.querySelector('.nova-pasta-btn').addEventListener('click', () => {
+    document.getElementById('modalNovoContrato').style.display = 'flex';
+    document.getElementById('data_criacao').value = new Date().toISOString().split('T')[0];
+  });
+
+  function fecharModal() {
+    document.getElementById('modalNovoContrato').style.display = 'none';
+  }
+
+  document.getElementById('formNovoContrato').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const form = document.getElementById('formNovoContrato');
+    const formData = new FormData(form);
+
+    const token = localStorage.getItem('token');
+
+    try {
+      const response = await fetch('http://localhost:3000/contratos', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Contrato salvo com sucesso!');
+        fecharModal();
+        form.reset();
+      } else {
+        alert('Erro ao salvar contrato: ' + (result.mensagem || 'Erro desconhecido.'));
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      alert('Erro inesperado ao salvar contrato.');
+    }
+  });
