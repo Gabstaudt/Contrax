@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contratos - Clientes PJ</title>
+  <link rel="stylesheet" href="contabt.css" />
+  <link rel="stylesheet" href="../navbar/nav.css" />
+  <link rel="stylesheet" href="../sidebar/side.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <div class="header-pasta">
+        <div>
+          <h1 class="titulo-pasta">Clientes PJ</h1>
+          <p class="descricao-pasta">Contratos Internos - 06 contratos</p>
+        </div>
+        <button class="btn-novo">+ Novo Contrato</button>
+      </div>
+
+      <div class="filtro-wrapper">
+        <select>
+          <option value="todos">Todos</option>
+          <option value="ativos">Ativos</option>
+          <option value="vencidos">Vencidos</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Vencimento</th>
+              <th>Criação</th>
+              <th>Valor</th>
+              <th>Status</th>
+              <th>Partes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Contrato 1</td>
+              <td>13/10/2025</td>
+              <td>13/10/2025</td>
+              <td>R$ 12.000,00</td>
+              <td><span class="status ativo">Ativo</span></td>
+              <td>👥👥👥</td>
+            </tr>
+            <!-- Adicione mais linhas conforme necessário -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="contabt.js"></script>
+</body>
+</html>
