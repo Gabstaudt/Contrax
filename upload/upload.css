@@ -1,21 +1,33 @@
-body, html {
+/* RESET */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-  height: 100%;
-  overflow-y: auto;
+  box-sizing: border-box;
 }
 
+body, html {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  overflow-y: auto;
+  background-color: #F4F6FA;
+}
+
+.layout {
+  display: flex;
+  margin-top: 80px;
+}
+
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   height: 80px;
-  width: 95%;
+  width: 100%;
   background-color: #002D77;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   padding: 0 40px;
   z-index: 1000;
 }
@@ -44,21 +56,17 @@ body, html {
   height: 32px;
 }
 
-.layout {
-  display: flex;
-  margin-top: 80px;
-}
-
 /* SIDEBAR */
 .sidebar {
   position: fixed;
-  top: 70px;
+  top: 80px;
   left: 0;
-  width: 345px;
+  width: 18vw;
   height: calc(100vh - 80px);
   background: #ffffff;
   padding-top: 40px;
   border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
 }
 
 .sidebar ul {
@@ -70,60 +78,65 @@ body, html {
   display: flex;
   align-items: center;
   height: 60px;
-  cursor: pointer;
   font-family: 'Montserrat', sans-serif;
-  font-size: 24px;
+  font-size: 1.2vw;
   font-weight: 600;
   color: #002D77;
+  cursor: pointer;
 }
 
 .icon-wrapper {
-  width: 72px;
+  width: 4vw;
+  height: 60px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .label {
-  padding-left: 32px;
-  width: 273px;
+  padding-left: 2vw;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .nav-item.active {
-  background: linear-gradient(to right, #FB6A00 0px, #FB6A00 72px, #002D77 72px);
+  background: linear-gradient(to right, #FB6A00 0px, #FB6A00 4vw, #002D77 4vw);
   color: white;
 }
 
-.nav-item.active .label,
-.nav-item.active img {
-  color: white;
+.nav-item.active img,
+.nav-item.active .label {
   filter: brightness(0) invert(1);
 }
 
 /* CONTEÚDO PRINCIPAL */
 .main-upload {
-  margin-left: 345px;
+  margin-left: 18vw;
   padding: 32px;
   flex: 1;
-  background-color: #F4F6FA;
+  min-height: calc(100vh - 80px);
 }
 
 .upload-title {
-  font-size: 30px;
+  font-size: 2vw;
   font-weight: 700;
   color: #002D77;
   margin-bottom: 32px;
 }
 
+/* ÁREA UPLOAD + FORMULÁRIO */
 .upload-area {
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
+  justify-content: space-between;
 }
 
-/* ÁREA DE UPLOAD */
 .upload-box {
-  width: 343px;
-  height: 419px;
+  width: 100%;
+  max-width: 350px;
+  height: 440px;
   background: #FFFFFF;
   border: 2px dashed #1877F2;
   display: flex;
@@ -139,7 +152,7 @@ body, html {
 }
 
 .upload-text {
-  font-size: 20x;
+  font-size: 20px;
   font-weight: 500;
   text-align: center;
   color: #002D77;
@@ -148,10 +161,11 @@ body, html {
 /* FORMULÁRIO */
 .form-box {
   flex: 1;
+  min-width: 300px;
 }
 
 .form-title {
-  font-size: 30px;
+  font-size: 1.7vw;
   font-weight: 600;
   color: #002D77;
   margin-bottom: 32px;
@@ -165,7 +179,7 @@ body, html {
 }
 
 .form-group label {
-  font-size: 20px;
+  font-size: 18px;
   color: #002D77;
 }
 
@@ -174,31 +188,34 @@ textarea {
   background-color: #FFFFFF;
   border: 1px solid #CBD6E6;
   border-radius: 10px;
-  padding: 0 16px;
+  padding: 12px;
   font-size: 16px;
   font-family: 'Inter', sans-serif;
 }
 
 .form-group input {
-  height: 40px;
-  width: 615px;
+  width: 100%;
+  max-width: 615px;
 }
 
 textarea {
-  width: 615px;
+  width: 100%;
+  max-width: 615px;
   height: 87px;
   padding-top: 10px;
   resize: none;
 }
 
-/* CAMPOS DE DATA */
+/* LINHA DE DATAS */
 .form-row {
   display: flex;
-  gap: 35px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .form-group.half input {
-  width: 290px;
+  width: 100%;
+  max-width: 290px;
 }
 
 /* BOTÕES */
@@ -206,11 +223,13 @@ textarea {
   margin-top: 32px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 20px;
 }
 
 .cancelar {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #002D77;
   cursor: pointer;
@@ -219,13 +238,14 @@ textarea {
 .button-group {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .btn {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
-  height: 60px;
+  height: 50px;
   border-radius: 10px;
   border: 1px solid #7694B8;
   cursor: pointer;
@@ -234,15 +254,15 @@ textarea {
 .btn.sec {
   background-color: #FFFFFF;
   color: #002D77;
-  width: 198px;
+  width: 180px;
 }
 
 .btn.sec.wide {
-  width: 245px;
+  width: 220px;
 }
 
 .btn.primary {
-  width: 202px;
+  width: 190px;
   background-color: #FB6A00;
   color: #EBEFF7;
   border: none;
