@@ -1,5 +1,3 @@
-// inicial.js
-
 // Função para carregar HTML em um container
 async function loadComponent(id, path) {
   try {
@@ -61,8 +59,6 @@ sidebar = sidebar
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
 
-
-
 // Função para buscar e exibir contratos
 async function carregarContratos() {
   try {
@@ -78,28 +74,55 @@ async function carregarContratos() {
     const tbody = document.querySelector('table tbody');
     tbody.innerHTML = '';
 
+    let totalAtivos = 0;
+    let totalAvencer = 0;
+    let totalVencidos = 0;
+
     contratos.forEach(contrato => {
       const row = document.createElement('tr');
 
       const partes = contrato.partes?.length || 1;
-      const statusClasse = contrato.status === 'vencido'
+      const hoje = new Date();
+      const vencimento = new Date(contrato.data_vencimento);
+      const diasRestantes = Math.ceil((vencimento - hoje) / (1000 * 60 * 60 * 24));
+
+      let statusDinamico = 'ativo';
+      if (diasRestantes < 0) {
+        statusDinamico = 'vencido';
+        totalVencidos++;
+      } else if (diasRestantes <= 5) {
+        statusDinamico = 'avencer';
+        totalAvencer++;
+      } else {
+        totalAtivos++;
+      }
+
+      const statusClasse = statusDinamico === 'vencido'
         ? 'vencido'
-        : contrato.status === 'ativo'
-        ? 'ativo'
+        : statusDinamico === 'avencer'
+        ? 'avencer'
         : contrato.status === 'cancelado'
         ? 'inativo'
-        : 'avencer';
+        : 'ativo';
 
       row.innerHTML = `
         <td>${contrato.nome}</td>
         <td>${new Date(contrato.data_vencimento).toLocaleDateString('pt-BR')}</td>
         <td>R$ ${Number(contrato.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
-        <td><span class="status ${statusClasse}">${contrato.status}</span></td>
+       <td><span class="status ${statusClasse}">
+  ${statusClasse === 'avencer' ? 'A vencer' : statusClasse.charAt(0).toUpperCase() + statusClasse.slice(1)}
+</span></td>
+
         <td>${'👥'.repeat(partes)}</td>
       `;
 
       tbody.appendChild(row);
     });
+
+    // Atualiza os cards
+    document.querySelector('.card.azul h2').textContent = totalAtivos;
+    document.querySelector('.card.azul-claro h2').textContent = totalAvencer;
+    document.querySelector('.card.laranja h2').textContent = totalVencidos;
 
   } catch (err) {
     console.error('Erro ao carregar contratos:', err);
