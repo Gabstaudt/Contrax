@@ -70,7 +70,7 @@ sidebar = sidebar
 document.getElementById('sidebar-container').innerHTML = sidebar;
 console.log('[✔] Sidebar carregada e atualizada');
 
-document.querySelector('.nova-pasta-btn').addEventListener('click', () => {
+document.querySelector('.novo-contrato-btn').addEventListener('click', () => {
     document.getElementById('modalNovoContrato').style.display = 'flex';
     document.getElementById('data_criacao').value = new Date().toISOString().split('T')[0];
   });
@@ -110,3 +110,6 @@ document.querySelector('.nova-pasta-btn').addEventListener('click', () => {
       alert('Erro inesperado ao salvar contrato.');
     }
   });
+
+
+  

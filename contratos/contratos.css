@@ -163,6 +163,31 @@ body, html {
   border-radius: 5px;
   cursor: pointer;
 }
+.botoes-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.novo-contrato-btn {
+  width: 300px;
+  height: 60px;
+  background-color: #fff;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid #ff7a00; /* ou o tom de laranja usado */
+  color: #ff7a00;
+  font-weight: 400;
+  font-size: 25px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.novo-contrato-btn:hover {
+  background-color: #ff7a00;
+  color: #fff;
+}
 
 /* GRID DE PASTAS */
 .pasta-grid {
