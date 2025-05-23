@@ -129,12 +129,13 @@ body, html {
 /* CONTEÚDO PRINCIPAL */
 .main-content {
   margin-left: 18vw;
-  padding: 32px;
+  padding: 20px;
   flex: 1;
   background-color: #f4f6f9;
-  min-height: 90vh;
+  height: 100%;
   overflow-y: auto;
 }
+
 
 .page-title {
   font-size: 2.3vw;
@@ -147,15 +148,17 @@ body, html {
 /* CARDS */
 .cards {
   display: flex;
+  justify-content: space-between;
   gap: 20px;
-  margin: 0 20px 32px 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+  margin: 0 4% 32px 4%; /* margem lateral */
+  flex-wrap: nowrap;
 }
 
 .card {
-  width: 430px;
-  height: 200px;
+  flex: 1;
+  min-width: 0;
+  max-width: 30%;
+  height: 14vh;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -165,52 +168,51 @@ body, html {
   align-items: center;
 }
 
+/* NÚMERO */
 .card h2 {
-  font-size: 60px;
+  font-size: 2.5vw;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   color: #002D77;
-  margin: 0 0 28px 0;
+  margin: 0 0 14px 0;
 }
 
+/* FRASE */
 .card p {
-  font-size: 20px;
+  font-size: 1.2vw;
   font-weight: 500;
-  font-family: 'Inter', sans-serif;
   color: #002D77;
   margin: 0;
 }
 
+/* Card especial */
 .card.laranja h2 {
   color: #FFA726;
 }
 
 /* TÍTULO DA TABELA */
 .table-title {
-  font-size: 2.5rem;
+  font-size: 2vw;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
   color: #002D77;
-  margin: 0 2% 20px 2%;
+  margin: 0 4% 20px 4%;
 }
 
-/* WRAPPER DA TABELA */
 .table-wrapper {
   background: white;
   border-radius: 8px;
-  width: 96%;
-  max-width: 1300px;
-  max-height: 420px;
-  overflow-y: auto;
+  margin: 0 4%;
+  overflow-x: auto;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  width: 92%;
+  max-width: 1300px;
 }
 
-/* TABELA */
 table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
-  font-size: 1.8rem;
+  font-size: 1.5vw;
   font-family: 'Inter', sans-serif;
 }
 
@@ -220,7 +222,6 @@ thead {
 
 thead th {
   padding: 16px 24px;
-  height: 56px;
   text-align: left;
   font-weight: 400;
   color: #47668B;
@@ -228,7 +229,6 @@ thead th {
 
 tbody td {
   padding: 16px 24px;
-  height: 56px;
   color: #000000;
   border-top: 1px solid #e0e0e0;
 }
@@ -258,4 +258,61 @@ tbody td {
 
 .status.inativo {
   background-color: #CBD6E6;
+}
+/* RESPONSIVIDADE - AJUSTE PROPORCIONAL SEM MUDAR O LAYOUT */
+@media screen and (max-width: 1440px) {
+  .card {
+    width: 360px;
+    height: 160px;
+  }
+
+  .card h2 {
+    font-size: 44px;
+  }
+
+  .card p {
+    font-size: 18px;
+  }
+
+  .table-wrapper {
+    max-height: 40vh;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .card {
+    width: 300px;
+    height: 140px;
+  }
+
+  .card h2 {
+    font-size: 36px;
+  }
+
+  .card p {
+    font-size: 16px;
+  }
+
+  .table-wrapper {
+    max-height: 38vh;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card {
+    width: 250px;
+    height: 120px;
+  }
+
+  .card h2 {
+    font-size: 28px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .table-wrapper {
+    max-height: 36vh;
+  }
 }
