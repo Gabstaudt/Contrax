@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minha Conta - Contrax</title>
+  <link rel="stylesheet" href="../navbar/nav.css" />
+  <link rel="stylesheet" href="../sidebar/side.css" />
+  <link rel="stylesheet" href="user.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <main class="main-content">
+      <h1 class="page-title">Sua conta</h1>
+
+      <section class="account-card">
+        <div class="form-section">
+          <h2>Informações Pessoais</h2>
+
+          <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" value="Juan Souza Brito" />
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" value="juan.souza@gmail.com" />
+          </div>
+
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="text" value="+55 (11) 98765-4321" />
+          </div>
+
+          <div class="form-group">
+            <label>Empresa Atual</label>
+            <input type="text" value="Empresa XPTO" />
+          </div>
+
+          <div class="form-group">
+            <label>Senha</label>
+            <input type="password" value="**************" />
+          </div>
+
+          <button class="alterar-senha-btn">Alterar Senha</button>
+        </div>
+
+      <div class="profile-section">
+  <div class="profile-pic-wrapper">
+    <img src="../assets/image.png" alt="Foto de perfil" class="profile-pic" />
+    <button class="edit-photo-btn">
+      <img src="../assets/editor.svg" alt="Editar" />
+    </button>
+  </div>
+</div>
+
+      </section>
+
+      <div class="bottom-buttons">
+        <button class="cancelar-btn">Cancelar</button>
+        <button class="salvar-btn">Salvar Alterações</button>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="user.js"></script>
+</body>
+</html>
