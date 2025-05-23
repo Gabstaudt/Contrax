@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload - Contrax</title>
+  <link rel="stylesheet" href="upload.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- NAVBAR E SIDEBAR DINÂMICAS -->
+  <div id="navbar-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-upload">
+      <h1 class="upload-title">Arraste um Arquivo</h1>
+
+      <div class="upload-area">
+        <!-- ÁREA DE UPLOAD -->
+        <div class="upload-box">
+          <img src="img/uploadicon.svg" alt="Ícone Upload" class="upload-icon" />
+          <p class="upload-text">Arraste um arquivo aqui ou clique para selecionar</p>
+        </div>
+
+        <!-- FORMULÁRIO -->
+        <div class="form-box">
+          <h2 class="form-title">Extração Automática</h2>
+
+          <div class="form-group">
+            <label>Partes do Contrato</label>
+            <input type="text" />
+          </div>
+
+          <div class="form-group">
+            <label>Tipo de Contrato</label>
+            <input type="text" />
+          </div>
+
+          <div class="form-group">
+            <label>Valor Total</label>
+            <input type="text" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half">
+              <label>Data de Início</label>
+              <input type="date" />
+            </div>
+            <div class="form-group half">
+              <label>Data de Vencimento</label>
+              <input type="date" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Cláusulas Encontradas</label>
+            <input type="text" />
+          </div>
+
+          <div class="form-group">
+            <label>Observações</label>
+            <textarea></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- RODAPÉ DE AÇÕES -->
+      <div class="footer-buttons">
+        <span class="cancelar">Cancelar</span>
+        <div class="button-group">
+          <button class="btn sec">Reanalisar (IA)</button>
+          <button class="btn sec wide">Assinar um Contrato</button>
+          <button class="btn primary">Salvar Contrato</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="upload.js"></script>
+</body>
+</html>

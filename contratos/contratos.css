@@ -8,13 +8,15 @@
 body, html {
   height: 100%;
   font-family: 'Inter', sans-serif;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
+/* CONTAINER PRINCIPAL */
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* NAVBAR */
@@ -22,8 +24,8 @@ body, html {
   position: fixed;
   top: 0;
   left: 0;
-  height: 10vh;
   width: 100%;
+  height: 10vh;
   background-color: #002D77;
   color: white;
   display: flex;
@@ -57,13 +59,12 @@ body, html {
   height: 32px;
 }
 
-/* LAYOUT */
+/* LAYOUT E SIDEBAR */
 .layout {
   display: flex;
   margin-top: 10vh;
 }
 
-/* SIDEBAR */
 .sidebar {
   position: fixed;
   top: 10vh;
@@ -136,126 +137,99 @@ body, html {
   overflow-y: auto;
 }
 
+/* TOPO */
+.header-contratos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
 .page-title {
   font-size: 2.3vw;
   font-weight: 700;
-  font-family: 'Inter', sans-serif;
   color: #002D77;
-  margin-bottom: 24px;
 }
 
-/* CARDS */
-.cards {
-  display: flex;
-  gap: 20px;
-  margin: 0 20px 32px 20px;
-  justify-content: center;
-  flex-wrap: wrap;
+.nova-pasta-btn {
+  width: 230px;
+  height: 60px;
+  background-color: #FB6A00;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 25px;
+  font-weight: 400;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.card {
-  width: 430px;
+/* GRID DE PASTAS */
+.pasta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 42px;
+  padding: 0 20px;
+}
+
+/* CARD DE PASTA */
+.pasta-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 650px;
   height: 200px;
-  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pasta-conteudo {
+  display: flex;
   align-items: center;
 }
 
-.card h2 {
-  font-size: 60px;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  color: #002D77;
-  margin: 0 0 28px 0;
+.pasta-icone {
+  width: 100px;
+  height: 100px;
+  margin-right: 24px;
 }
 
-.card p {
+.pasta-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pasta-nome {
+  font-size: 30px;
+  font-weight: 500;
+  color: #002D77;
+}
+
+.pasta-descricao,
+.pasta-quantidade {
   font-size: 20px;
-  font-weight: 500;
-  font-family: 'Inter', sans-serif;
-  color: #002D77;
-  margin: 0;
-}
-
-.card.laranja h2 {
-  color: #FFA726;
-}
-
-/* TÍTULO DA TABELA */
-.table-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  font-family: 'Inter', sans-serif;
-  color: #002D77;
-  margin: 0 2% 20px 2%;
-}
-
-/* WRAPPER DA TABELA */
-.table-wrapper {
-  background: white;
-  border-radius: 8px;
-  width: 96%;
-  max-width: 1300px;
-  max-height: 420px;
-  overflow-y: auto;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-}
-
-/* TABELA */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1.8rem;
-  font-family: 'Inter', sans-serif;
-}
-
-thead {
-  background-color: #EDF3FF;
-}
-
-thead th {
-  padding: 16px 24px;
-  height: 56px;
-  text-align: left;
   font-weight: 400;
   color: #47668B;
 }
 
-tbody td {
-  padding: 16px 24px;
-  height: 56px;
-  color: #000000;
-  border-top: 1px solid #e0e0e0;
-}
-
 /* STATUS */
-.status {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 1.2rem;
+.pasta-status {
+  font-size: 20px;
   font-weight: 500;
-  display: inline-block;
 }
 
-.status.ativo {
-  background-color: #C5EBCF;
+.pasta-status.ativo {
+  color: #4CAF50;
 }
 
-.status.vencido {
-  background-color: #DC2626;
-  color: white;
+.pasta-status.vencido {
+  color: #DC2626;
 }
 
-.status.avencer {
-  background-color: #FB6A00;
-  color: white;
-}
-
-.status.inativo {
-  background-color: #CBD6E6;
+.pasta-status.avencer {
+  color: #FB6A00;
 }

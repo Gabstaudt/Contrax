@@ -1,6 +1,5 @@
-// inicial.js
+// contratos.js
 
-// Carrega qualquer componente HTML em um container por ID
 async function loadComponent(id, path) {
   try {
     const res = await fetch(path);
@@ -12,7 +11,7 @@ async function loadComponent(id, path) {
   }
 }
 
-// Aguarda até que os itens da navbar estejam no DOM
+// Aguarda até que .nav-item esteja no DOM
 function waitForNavbarReady(callback) {
   const check = () => {
     const navItems = document.querySelectorAll('.nav-item');
@@ -26,7 +25,7 @@ function waitForNavbarReady(callback) {
   requestAnimationFrame(check);
 }
 
-// Ativa redirecionamentos nos itens da navbar
+// Eventos de clique após a navbar estar pronta
 function ativarLinksNavbar(navItems) {
   navItems.forEach((item) => {
     const label = item.querySelector('.label')?.textContent?.trim();
@@ -55,17 +54,17 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carrega a navbar
+// Carrega navbar
 await loadComponent('navbar-container', '../navbar/nav.html');
 
-// Aguarda navbar ser renderizada antes de ativar os links
+// Aguarda a navbar estar pronta, depois ativa os links
 waitForNavbarReady(ativarLinksNavbar);
 
-// Carrega a sidebar com "Dashboard" ativo
+// Carrega sidebar com "Contratos" como item ativo
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
 sidebar = sidebar
-  .replace('{{dashboard}}', 'active')
-  .replace('{{contratos}}', '')
+  .replace('{{dashboard}}', '')
+  .replace('{{contratos}}', 'active')
   .replace('{{upload}}', '')
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;

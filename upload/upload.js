@@ -1,6 +1,6 @@
-// inicial.js
+// upload.js
 
-// Carrega qualquer componente HTML em um container por ID
+// Função genérica de carregamento
 async function loadComponent(id, path) {
   try {
     const res = await fetch(path);
@@ -12,7 +12,7 @@ async function loadComponent(id, path) {
   }
 }
 
-// Aguarda até que os itens da navbar estejam no DOM
+// Aguarda até que navbar esteja pronta
 function waitForNavbarReady(callback) {
   const check = () => {
     const navItems = document.querySelectorAll('.nav-item');
@@ -26,7 +26,7 @@ function waitForNavbarReady(callback) {
   requestAnimationFrame(check);
 }
 
-// Ativa redirecionamentos nos itens da navbar
+// Aplica os redirecionamentos nos botões da navbar
 function ativarLinksNavbar(navItems) {
   navItems.forEach((item) => {
     const label = item.querySelector('.label')?.textContent?.trim();
@@ -55,18 +55,16 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carrega a navbar
+// Carrega navbar e ativa os links
 await loadComponent('navbar-container', '../navbar/nav.html');
-
-// Aguarda navbar ser renderizada antes de ativar os links
 waitForNavbarReady(ativarLinksNavbar);
 
-// Carrega a sidebar com "Dashboard" ativo
+// Carrega a sidebar com "Upload" como ativo
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
 sidebar = sidebar
-  .replace('{{dashboard}}', 'active')
+  .replace('{{dashboard}}', '')
   .replace('{{contratos}}', '')
-  .replace('{{upload}}', '')
+  .replace('{{upload}}', 'active')
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
 console.log('[✔] Sidebar carregada e atualizada');
