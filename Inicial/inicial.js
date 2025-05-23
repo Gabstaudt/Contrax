@@ -61,3 +61,49 @@ sidebar = sidebar
   .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
 
+
+
+// Função para buscar e exibir contratos
+async function carregarContratos() {
+  try {
+    const token = localStorage.getItem('token');
+
+    const res = await fetch('http://localhost:3000/contratos', {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    });
+
+    const contratos = await res.json();
+    const tbody = document.querySelector('table tbody');
+    tbody.innerHTML = '';
+
+    contratos.forEach(contrato => {
+      const row = document.createElement('tr');
+
+      const partes = contrato.partes?.length || 1;
+      const statusClasse = contrato.status === 'vencido'
+        ? 'vencido'
+        : contrato.status === 'ativo'
+        ? 'ativo'
+        : contrato.status === 'cancelado'
+        ? 'inativo'
+        : 'avencer';
+
+      row.innerHTML = `
+        <td>${contrato.nome}</td>
+        <td>${new Date(contrato.data_vencimento).toLocaleDateString('pt-BR')}</td>
+        <td>R$ ${Number(contrato.valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</td>
+        <td><span class="status ${statusClasse}">${contrato.status}</span></td>
+        <td>${'👥'.repeat(partes)}</td>
+      `;
+
+      tbody.appendChild(row);
+    });
+
+  } catch (err) {
+    console.error('Erro ao carregar contratos:', err);
+  }
+}
+
+carregarContratos();
