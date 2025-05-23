@@ -1,6 +1,4 @@
-// upload.js
 
-// Função genérica de carregamento
 async function loadComponent(id, path) {
   try {
     const res = await fetch(path);
@@ -12,7 +10,7 @@ async function loadComponent(id, path) {
   }
 }
 
-// Aguarda até que navbar esteja pronta
+
 function waitForNavbarReady(callback) {
   const check = () => {
     const navItems = document.querySelectorAll('.nav-item');
@@ -26,7 +24,7 @@ function waitForNavbarReady(callback) {
   requestAnimationFrame(check);
 }
 
-// Aplica os redirecionamentos nos botões da navbar
+
 function ativarLinksNavbar(navItems) {
   navItems.forEach((item) => {
     const label = item.querySelector('.label')?.textContent?.trim();
@@ -55,11 +53,11 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carrega navbar e ativa os links
+
 await loadComponent('navbar-container', '../navbar/nav.html');
 waitForNavbarReady(ativarLinksNavbar);
 
-// Carrega a sidebar com "Upload" como ativo
+
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
 sidebar = sidebar
   .replace('{{dashboard}}', '')

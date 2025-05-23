@@ -1,4 +1,4 @@
-// sidebar/side.js
+
 export async function loadSidebar(active = '') {
   let html = await fetch('sidebar/side.html').then(res => res.text());
 

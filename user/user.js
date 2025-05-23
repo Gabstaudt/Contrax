@@ -1,4 +1,3 @@
-// user.js
 
 async function loadComponent(id, path) {
   try {
@@ -52,11 +51,11 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carrega navbar e ativa eventos
+
 await loadComponent('navbar-container', '../navbar/nav.html');
 waitForNavbarReady(ativarLinksNavbar);
 
-// Carrega sidebar com "Minha Conta" como ativo
+
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
 sidebar = sidebar
   .replace('{{dashboard}}', '')

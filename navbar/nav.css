@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 2vw; /* espaço da logo */
+  padding-left: 2vw; 
   z-index: 1000;
 }
 
@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 
-/* PERFIL → último ícone com margem direita precisa */
+
 .perfil-icon {
   width: 3.2vw;
   height: 1.7vw;

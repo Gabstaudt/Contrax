@@ -1,10 +1,10 @@
-// navbar/nav.js
+
 
 export async function loadNavbar() {
   const html = await fetch('navbar/nav.html').then(res => res.text());
   document.getElementById('navbar-container').innerHTML = html;
 
-  // Só executa os listeners após o HTML ter sido inserido
+  
   attachNavItemListeners();
 }
 

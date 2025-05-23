@@ -1,4 +1,4 @@
-// contratos.js
+
 
 async function loadComponent(id, path) {
   try {
@@ -11,7 +11,7 @@ async function loadComponent(id, path) {
   }
 }
 
-// Aguarda até que .nav-item esteja no DOM
+
 function waitForNavbarReady(callback) {
   const check = () => {
     const navItems = document.querySelectorAll('.nav-item');
@@ -54,13 +54,13 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carrega navbar
+
 await loadComponent('navbar-container', '../navbar/nav.html');
 
-// Aguarda a navbar estar pronta, depois ativa os links
+
 waitForNavbarReady(ativarLinksNavbar);
 
-// Carrega sidebar com "Contratos" como item ativo
+
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
 sidebar = sidebar
   .replace('{{dashboard}}', '')

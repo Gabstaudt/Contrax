@@ -6,7 +6,7 @@ async function loadComponent(id, path) {
 
 await loadComponent('navbar-container', '../navbar/nav.html');
 
-// Agora que a navbar foi carregada, ligamos os eventos:
+
 ativarEventosNavbar();
 
 async function ativarEventosNavbar() {

@@ -98,7 +98,7 @@ body, html {
   border: 2px solid #002D77;
 }
 
-/* Botão de edição redondo */
+/* Botão de edição*/
 .edit-photo-btn {
   position: absolute;
   bottom: 8px;
@@ -148,7 +148,7 @@ body, html {
   cursor: pointer;
 }
 
-/* Responsivo */
+
 @media (max-width: 768px) {
   .layout {
     margin-left: 0;
