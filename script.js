@@ -1,14 +1,27 @@
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-  document.getElementById("loginForm").addEventListener("submit", function (e) {
-    e.preventDefault(); 
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
 
-    const email = document.getElementById("email").value;
-    const senha = document.getElementById("senha").value;
+  try {
+    const response = await fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha })
+    });
 
-    if (email === "gabimstaudt@gmail.com" && senha === "gabi123") {
-      window.location.href = "/inicial/inicial.html"; 
+    const data = await response.json();
+
+    if (response.ok) {
+      alert('Login bem-sucedido!');
+      localStorage.setItem('token', data.token);
+      window.location.href = './Inicial/inicial.html'; 
     } else {
-      alert("Email ou senha incorretos.");
+      alert(data.mensagem || 'Falha no login.');
     }
-  });
-
+  } catch (err) {
+    alert('Erro ao conectar com o servidor.');
+    console.error(err);
+  }
+});
