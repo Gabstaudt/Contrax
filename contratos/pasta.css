@@ -1,0 +1,109 @@
+/* GRID DE PASTAS */
+.pasta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 42px;
+  padding: 0 20px;
+}
+
+/* CARD DE PASTA */
+.pasta-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 650px;
+  height: 200px;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pasta-conteudo {
+  display: flex;
+  align-items: center;
+}
+
+.pasta-icone {
+  width: 100px;
+  height: 100px;
+  margin-right: 24px;
+}
+
+.pasta-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pasta-nome {
+  font-size: 30px;
+  font-weight: 500;
+  color: #002D77;
+}
+
+.pasta-descricao,
+.pasta-quantidade {
+  font-size: 20px;
+  font-weight: 400;
+  color: #47668B;
+}
+
+/* STATUS */
+.pasta-status {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.pasta-status.ativo {
+  color: #4CAF50;
+}
+
+.pasta-status.vencido {
+  color: #DC2626;
+}
+
+.pasta-status.avencer {
+  color: #FB6A00;
+}
+
+/* BOTÃO DOTS DE AÇÃO DA PASTA */
+.pasta-acoes {
+  position: relative;
+  display: inline-block;
+}
+
+.icone-acoes {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px; /* canto inferior */
+  right: 10px;  /* canto direito */
+  z-index: 10;
+}
+
+.menu-acoes {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 5px;
+  display: none;
+  z-index: 10;
+}
+
+.menu-acoes button {
+  display: block;
+  background: none;
+  border: none;
+  padding: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.menu-acoes button:hover {
+  background: #eee;
+}

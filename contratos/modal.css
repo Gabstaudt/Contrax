@@ -1,0 +1,86 @@
+/* MODAIS COM ESTILO HARMONIOSO */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* leve esmaecimento para destaque */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif; /* fonte consistente */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh; 
+  overflow-y: auto;  
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+
+.modal-content h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #002D77; /* azul característico do tema */
+    margin-bottom: 1rem;
+}
+
+.modal-content form label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; /* aumenta o peso */
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+
+.modal-content form input,
+.modal-content form textarea,
+.modal-content form button,
+.modal-content form select {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400; 
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+
+.modal-content form button {
+    background-color: #FB6A00;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.modal-content form button:hover {
+    background-color: #e06500;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #002D77; /* azul temático */
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+    color: #FB6A00; /* laranja vibrante ao passar o mouse */
+}

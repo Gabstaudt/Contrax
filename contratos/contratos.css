@@ -151,6 +151,12 @@ body, html {
   color: #002D77;
 }
 
+.botoes-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .nova-pasta-btn {
   width: 230px;
   height: 60px;
@@ -163,18 +169,13 @@ body, html {
   border-radius: 5px;
   cursor: pointer;
 }
-.botoes-header {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
 
 .novo-contrato-btn {
   width: 300px;
   height: 60px;
   background-color: #fff;
   font-family: 'Inter', sans-serif;
-  border: 2px solid #ff7a00; /* ou o tom de laranja usado */
+  border: 2px solid #ff7a00; 
   color: #ff7a00;
   font-weight: 400;
   font-size: 25px;
@@ -189,152 +190,3 @@ body, html {
   color: #fff;
 }
 
-/* GRID DE PASTAS */
-.pasta-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 42px;
-  padding: 0 20px;
-}
-
-/* CARD DE PASTA */
-.pasta-card {
-  background-color: #ffffff;
-  width: 100%;
-  max-width: 650px;
-  height: 200px;
-  border-radius: 8px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.pasta-conteudo {
-  display: flex;
-  align-items: center;
-}
-
-.pasta-icone {
-  width: 100px;
-  height: 100px;
-  margin-right: 24px;
-}
-
-.pasta-texto {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.pasta-nome {
-  font-size: 30px;
-  font-weight: 500;
-  color: #002D77;
-}
-
-.pasta-descricao,
-.pasta-quantidade {
-  font-size: 20px;
-  font-weight: 400;
-  color: #47668B;
-}
-
-/* STATUS */
-.pasta-status {
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.pasta-status.ativo {
-  color: #4CAF50;
-}
-
-.pasta-status.vencido {
-  color: #DC2626;
-}
-
-.pasta-status.avencer {
-  color: #FB6A00;
-}
-
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-
-  .modal-content {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
-
-  form input, form textarea, form button, form select {
-    display: block;
-    width: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-
-/* BOTAO DOTS DE AÇÃO DA PASTA */
-  .pasta-acoes {
-  position: relative;
-  display: inline-block;
-}
-
-.icone-acoes {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 10px; /* canto inferior */
-  right: 10px;  /* canto direito */
-  z-index: 10;
-}
-
-
-.menu-acoes {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 5px;
-  display: none;
-  z-index: 10;
-}
-
-.menu-acoes button {
-  display: block;
-  background: none;
-  border: none;
-  padding: 5px;
-  width: 100%;
-  cursor: pointer;
-}
-
-.menu-acoes button:hover {
-  background: #eee;
-}
