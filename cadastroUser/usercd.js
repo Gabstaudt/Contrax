@@ -1,56 +1,49 @@
-// usercd.js
+document.getElementById('cadastroUsuarioForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-document.getElementById('cadastroUsuarioForm').addEventListener('submit', async function(e) {
-  e.preventDefault(); // Impede o comportamento padrão do formulário
+  const nome = document.getElementById('nome').value;
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+  const confirmar = document.getElementById('confirmar').value;
+  const codigo = document.getElementById('codigo').value;
 
-  // Coleta os valores do formulário
-  const nome = document.getElementById('nome').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const senha = document.getElementById('senha').value.trim();
-  const confirmar = document.getElementById('confirmar').value.trim();
-  const codigo = document.getElementById('codigo').value.trim();
-
-  // Validação simples
   if (senha !== confirmar) {
-    alert('As senhas não coincidem!');
+    alert('As senhas não coincidem.');
     return;
   }
 
   if (codigo !== '13102003') {
-    alert('Código da empresa inválido!');
+    alert('Código da empresa inválido.');
     return;
   }
 
-  // Criação do objeto de dados
   const dados = {
     nome,
     email,
     senha,
-    codigo
+    tipo: 'comum',
+    codigo  // 💥 Agora o campo código está incluso
   };
 
   try {
-    // Envio para o servidor (ajuste a URL se necessário)
-    const resposta = await fetch('http://localhost:3000/api/usuarios', {  // Troque pelo seu endpoint real
+    const resposta = await fetch('http://localhost:3000/usuarios', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
     });
 
-    if (!resposta.ok) {
-      const erro = await resposta.text();
-      throw new Error(`Erro do servidor: ${erro}`);
+    if (resposta.ok) {
+      const json = await resposta.json();
+      alert('Cadastro realizado com sucesso!');
+      console.log(json);
+      window.location.href = '/index.html';
+    } else {
+      const erro = await resposta.json();
+      console.error('Erro ao cadastrar:', erro);
+      alert(`Erro ao cadastrar: ${erro.detalhes || erro.error || resposta.status}`);
     }
-
-    const resultado = await resposta.json();
-    console.log('Usuário cadastrado com sucesso:', resultado);
-    alert('Cadastro realizado com sucesso!');
-    document.getElementById('cadastroUsuarioForm').reset();
-
-  } catch (error) {
-    console.error('Erro ao cadastrar usuário:', error);
-    alert('Erro ao cadastrar usuário. Verifique a conexão e tente novamente.');
+  } catch (err) {
+    console.error('Erro na requisição:', err);
+    alert('Erro na conexão com o servidor. Verifique se o backend está online.');
   }
 });
