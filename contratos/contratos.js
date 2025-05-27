@@ -72,26 +72,66 @@ document.getElementById('formNovoContrato').addEventListener('submit', async (e)
   const formData = new FormData(form);
   const token = localStorage.getItem('token');
 
+  // Verifica se a opção de criar pasta está visível
+  const novaPastaCampos = document.getElementById('novaPastaCampos');
+  if (novaPastaCampos.style.display === 'block') {
+    const novaPastaTitulo = document.getElementById('novaPastaTitulo').value.trim();
+    const novaPastaDescricao = document.getElementById('novaPastaDescricao').value.trim();
+
+    if (!novaPastaTitulo) {
+      alert('Por favor, insira o título da nova pasta.');
+      return;
+    }
+
+    try {
+      // Cria a nova pasta no backend
+      const responsePasta = await fetch('http://localhost:3000/pastas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        body: JSON.stringify({ titulo: novaPastaTitulo, descricao: novaPastaDescricao })
+      });
+
+      const resultPasta = await responsePasta.json();
+      if (!responsePasta.ok) {
+        alert('Erro ao criar a nova pasta: ' + (resultPasta.error || 'Erro desconhecido'));
+        return;
+      }
+
+      // Define o ID da nova pasta no campo select
+      formData.set('pasta', resultPasta.id);
+    } catch (err) {
+      console.error('Erro ao criar nova pasta:', err);
+      alert('Erro inesperado ao criar nova pasta.');
+      return;
+    }
+  }
+
   try {
-    const response = await fetch('http://localhost:3000/contratos', {
+    // Agora cria o contrato com o FormData (já atualizado com a pasta, se criada)
+    const responseContrato = await fetch('http://localhost:3000/contratos', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token },
       body: formData
     });
-    const result = await response.json();
-    if (response.ok) {
+
+    const resultContrato = await responseContrato.json();
+    if (responseContrato.ok) {
       alert('Contrato salvo com sucesso!');
       fecharModal();
       form.reset();
       carregarPastasNaTela();
     } else {
-      alert('Erro ao salvar contrato: ' + (result.mensagem || 'Erro desconhecido.'));
+      alert('Erro ao salvar contrato: ' + (resultContrato.mensagem || 'Erro desconhecido'));
     }
   } catch (error) {
-    console.error('Erro na requisição:', error);
+    console.error('Erro ao salvar contrato:', error);
     alert('Erro inesperado ao salvar contrato.');
   }
 });
+
 
 // Carregar pastas no select do modal contrato
 async function carregarPastas() {
