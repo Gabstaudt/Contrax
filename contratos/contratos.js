@@ -163,10 +163,9 @@ async function carregarPastasNaTela() {
     const grid = document.getElementById('pastaGrid');
     grid.innerHTML = pastas.length === 0 ? '<p>Nenhuma pasta encontrada.</p>' : '';
 
-    pastas.forEach(pasta => {
+   pastas.forEach(pasta => {
   const card = document.createElement('div');
   card.classList.add('pasta-card');
-
   card.innerHTML = `
     <div class="pasta-conteudo">
       <img src="../assets/folder.svg" class="pasta-icone" />
@@ -189,9 +188,17 @@ async function carregarPastasNaTela() {
       </div>
     </div>
   `;
+  
+  // Adicionar evento de clique para abrir contabt.html com o id da pasta
+  card.addEventListener('click', () => {
+  window.location.href = `../contabt/contabt.html?id=${pasta.id}&titulo=${encodeURIComponent(pasta.titulo)}`;
+  });
+
+
 
   grid.appendChild(card);
 });
+
 
 
 
