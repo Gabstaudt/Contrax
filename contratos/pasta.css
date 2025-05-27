@@ -15,14 +15,16 @@
   border-radius: 8px;
   padding: 24px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row; /* Alterado de column para row */
+  align-items: center; /* Alinha verticalmente */
+  justify-content: space-between; /* Espaça entre ícone e textos */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .pasta-conteudo {
   display: flex;
   align-items: center;
+  flex: 1; /* Ocupa espaço do card */
 }
 
 .pasta-icone {
@@ -34,7 +36,7 @@
 .pasta-texto {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .pasta-nome {
@@ -51,9 +53,19 @@
 }
 
 /* STATUS */
+.pasta-status-container {
+  display: flex;
+  flex-direction: row; /* Garante alinhamento horizontal */
+  gap: 10px; /* Espaçamento entre status */
+  align-items: center;
+}
+
 .pasta-status {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap; /* Garante que o texto não quebre */
 }
 
 .pasta-status.ativo {
