@@ -107,3 +107,11 @@
 .menu-acoes button:hover {
   background: #eee;
 }
+
+.pasta-detalhes {
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  margin-top: 5px;
+}
+
+

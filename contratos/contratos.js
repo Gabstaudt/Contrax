@@ -164,28 +164,38 @@ async function carregarPastasNaTela() {
     grid.innerHTML = pastas.length === 0 ? '<p>Nenhuma pasta encontrada.</p>' : '';
 
     pastas.forEach(pasta => {
-      const card = document.createElement('div');
-      card.classList.add('pasta-card');
-      card.innerHTML = `
-        <div class="pasta-conteudo">
-          <img src="../assets/folder.svg" class="pasta-icone" />
-          <div class="pasta-texto">
-            <h2 class="pasta-nome">${pasta.titulo}</h2>
-            <p class="pasta-descricao">${pasta.descricao || 'Sem descrição'}</p>
-            <p class="pasta-quantidade">${pasta.contratoCount || 0} contratos</p>
-          </div>
-        </div>
-        <p class="pasta-status ativo">${pasta.status || 'Em uso'}</p>
-        <div class="pasta-acoes">
-          <img src="../assets/img/dots.svg" class="icone-acoes" data-id="${pasta.id}" />
-          <div class="menu-acoes" style="display: none;">
-            <button onclick="editarPasta(${pasta.id}, '${pasta.titulo}', '${pasta.descricao}')">Editar</button>
-            <button onclick="abrirModalConfirmacao(${pasta.id})">Excluir</button>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
+  const card = document.createElement('div');
+  card.classList.add('pasta-card');
+  
+  // Linha detalhada com cores
+  const detalhes = `
+    <span style="color: #4CAF50; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.ativosCount || 0} ativos</span>
+    <span style="color: #FB6A00; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.aVencerCount || 0} a vencer</span>
+    <span style="color: #DC2626; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.vencidosCount || 0} vencidos</span>
+  `;
+
+  card.innerHTML = `
+    <div class="pasta-conteudo">
+      <img src="../assets/folder.svg" class="pasta-icone" />
+      <div class="pasta-texto">
+        <h2 class="pasta-nome">${pasta.titulo}</h2>
+        <p class="pasta-descricao">${pasta.descricao || 'Sem descrição'}</p>
+        <p class="pasta-quantidade">${pasta.contratoCount || 0} contratos</p>
+        <p class="pasta-detalhes">${detalhes}</p>
+      </div>
+    </div>
+    <div class="pasta-acoes">
+      <img src="../assets/img/dots.svg" class="icone-acoes" data-id="${pasta.id}" />
+      <div class="menu-acoes" style="display: none;">
+        <button onclick="editarPasta(${pasta.id}, '${pasta.titulo}', '${pasta.descricao}')">Editar</button>
+        <button onclick="abrirModalConfirmacao(${pasta.id})">Excluir</button>
+      </div>
+    </div>
+  `;
+
+  grid.appendChild(card);
+});
+
 
     document.querySelectorAll('.icone-acoes').forEach(icone => {
       icone.addEventListener('click', (e) => {

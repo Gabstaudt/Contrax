@@ -2,19 +2,19 @@
   position: fixed;
   top: 0;
   left: 0;
+  height: 80px;
   width: 100%;
-  height: 10vh;
   background-color: #002D77;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding-left: 2vw; 
+  align-items: center;
+  padding: 0 40px;
   z-index: 1000;
 }
 
 .logo {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5vw;
+  font-size: 50px;
   font-weight: 600;
   color: white;
 }
@@ -26,18 +26,12 @@
 }
 
 .nav-icon {
-  width: 1.8vw;
-  height: 1.8vw;
-  min-width: 24px;
-  min-height: 24px;
+  width: 28px;
+  height: 28px;
   cursor: pointer;
 }
 
-
 .perfil-icon {
-  width: 3.2vw;
-  height: 1.7vw;
-  min-width: 40px;
-  min-height: 28px;
-  margin-right: 40px; 
+  width: 62px;
+  height: 32px;
 }
