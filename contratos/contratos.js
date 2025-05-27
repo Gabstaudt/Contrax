@@ -166,13 +166,6 @@ async function carregarPastasNaTela() {
     pastas.forEach(pasta => {
   const card = document.createElement('div');
   card.classList.add('pasta-card');
-  
-  // Linha detalhada com cores
-  const detalhes = `
-    <span style="color: #4CAF50; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.ativosCount || 0} ativos</span>
-    <span style="color: #FB6A00; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.aVencerCount || 0} a vencer</span>
-    <span style="color: #DC2626; font-weight: 500; font-family: 'Inter', sans-serif;">${pasta.vencidosCount || 0} vencidos</span>
-  `;
 
   card.innerHTML = `
     <div class="pasta-conteudo">
@@ -180,8 +173,12 @@ async function carregarPastasNaTela() {
       <div class="pasta-texto">
         <h2 class="pasta-nome">${pasta.titulo}</h2>
         <p class="pasta-descricao">${pasta.descricao || 'Sem descrição'}</p>
-        <p class="pasta-quantidade">${pasta.contratoCount || 0} contratos</p>
-        <p class="pasta-detalhes">${detalhes}</p>
+        <p class="pasta-quantidade">${pasta.totalContratos} contratos</p>
+        <p>
+          ${pasta.ativos ? `<span style="color: #4CAF50">${pasta.ativos} ativos</span><br>` : ''}
+          ${pasta.aVencer ? `<span style="color: #FB6A00">${pasta.aVencer} a vencer</span><br>` : ''}
+          ${pasta.vencidos ? `<span style="color: #DC2626">${pasta.vencidos} vencidos</span>` : ''}
+        </p>
       </div>
     </div>
     <div class="pasta-acoes">
@@ -195,6 +192,7 @@ async function carregarPastasNaTela() {
 
   grid.appendChild(card);
 });
+
 
 
     document.querySelectorAll('.icone-acoes').forEach(icone => {
