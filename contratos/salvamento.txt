@@ -1,6 +1,6 @@
-let idPastaParaExcluir = null;  
+let idPastaParaExcluir = null;  // Variável global para armazenar o id da pasta a ser excluída
 
-// Função para carregar componentes HTML (Navbar e Sidebar)
+
 async function loadComponent(id, path) {
   try {
     const res = await fetch(path);
@@ -12,7 +12,6 @@ async function loadComponent(id, path) {
   }
 }
 
-// Funções de navegação
 function waitForNavbarReady(callback) {
   const check = () => {
     const navItems = document.querySelectorAll('.nav-item');
@@ -31,13 +30,17 @@ function ativarLinksNavbar(navItems) {
     item.addEventListener('click', () => {
       switch (label) {
         case 'Dashboard':
-          window.location.href = '../inicial/inicial.html'; break;
+          window.location.href = '../inicial/inicial.html';
+          break;
         case 'Contratos':
-          window.location.href = '../contratos/contratos.html'; break;
+          window.location.href = '../contratos/contratos.html';
+          break;
         case 'Upload':
-          window.location.href = '../upload/upload.html'; break;
+          window.location.href = '../upload/upload.html';
+          break;
         case 'Minha Conta':
-          window.location.href = '../user/user.html'; break;
+          window.location.href = '../user/user.html';
+          break;
         default:
           console.warn(`[⚠️] Label desconhecido: ${label}`);
       }
@@ -45,27 +48,37 @@ function ativarLinksNavbar(navItems) {
   });
 }
 
-// Carregamento inicial
 await loadComponent('navbar-container', '../navbar/nav.html');
 waitForNavbarReady(ativarLinksNavbar);
+
 let sidebar = await fetch('../sidebar/side.html').then(res => res.text());
-sidebar = sidebar.replace('{{dashboard}}', '').replace('{{contratos}}', 'active').replace('{{upload}}', '').replace('{{conta}}', '');
+sidebar = sidebar
+  .replace('{{dashboard}}', '')
+  .replace('{{contratos}}', 'active')
+  .replace('{{upload}}', '')
+  .replace('{{conta}}', '');
 document.getElementById('sidebar-container').innerHTML = sidebar;
 console.log('[✔] Sidebar carregada e atualizada');
 
-// Modal Novo Contrato
 document.querySelector('.novo-contrato-btn').addEventListener('click', () => {
   document.getElementById('modalNovoContrato').style.display = 'flex';
   document.getElementById('data_criacao').value = new Date().toISOString().split('T')[0];
   carregarPastas();
 });
+
 document.getElementById('btnCriarPasta').addEventListener('click', () => {
   const campos = document.getElementById('novaPastaCampos');
   campos.style.display = campos.style.display === 'none' ? 'block' : 'none';
 });
-function fecharModal() { document.getElementById('modalNovoContrato').style.display = 'none'; }
 
-// Formulário de novo contrato
+function fecharModal() {
+  document.getElementById('modalNovoContrato').style.display = 'none';
+}
+
+function fecharModalNovaPasta() {
+  document.getElementById('modalNovaPasta').style.display = 'none';
+}
+
 document.getElementById('formNovoContrato').addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = document.getElementById('formNovoContrato');
@@ -93,7 +106,6 @@ document.getElementById('formNovoContrato').addEventListener('submit', async (e)
   }
 });
 
-// Carregar pastas no select do modal contrato
 async function carregarPastas() {
   try {
     const res = await fetch('http://localhost:3000/pastas', {
@@ -113,7 +125,6 @@ async function carregarPastas() {
   }
 }
 
-// Carregar pastas na grid
 async function carregarPastasNaTela() {
   try {
     const res = await fetch('http://localhost:3000/pastas', {
@@ -121,29 +132,37 @@ async function carregarPastasNaTela() {
     });
     const pastas = await res.json();
     const grid = document.getElementById('pastaGrid');
-    grid.innerHTML = pastas.length === 0 ? '<p>Nenhuma pasta encontrada.</p>' : '';
+    grid.innerHTML = '';
+
+    if (pastas.length === 0) {
+      grid.innerHTML = '<p>Nenhuma pasta encontrada.</p>';
+      return;
+    }
 
     pastas.forEach(pasta => {
       const card = document.createElement('div');
       card.classList.add('pasta-card');
       card.innerHTML = `
-        <div class="pasta-conteudo">
-          <img src="../assets/folder.svg" class="pasta-icone" />
-          <div class="pasta-texto">
-            <h2 class="pasta-nome">${pasta.titulo}</h2>
-            <p class="pasta-descricao">${pasta.descricao || 'Sem descrição'}</p>
-            <p class="pasta-quantidade">${pasta.contratoCount || 0} contratos</p>
-          </div>
-        </div>
-        <p class="pasta-status ativo">${pasta.status || 'Em uso'}</p>
-        <div class="pasta-acoes">
-          <img src="../assets/img/dots.svg" class="icone-acoes" data-id="${pasta.id}" />
-          <div class="menu-acoes" style="display: none;">
-            <button onclick="editarPasta(${pasta.id}, '${pasta.titulo}', '${pasta.descricao}')">Editar</button>
-            <button onclick="abrirModalConfirmacao(${pasta.id})">Excluir</button>
-          </div>
-        </div>
-      `;
+  <div class="pasta-conteudo">
+    <img src="../assets/folder.svg" class="pasta-icone" />
+    <div class="pasta-texto">
+      <h2 class="pasta-nome">${pasta.titulo}</h2>
+      <p class="pasta-descricao">${pasta.descricao || 'Sem descrição'}</p>
+      <p class="pasta-quantidade">${pasta.contratoCount || 0} contratos</p>
+    </div>
+  </div>
+  <p class="pasta-status ativo">${pasta.status || 'Em uso'}</p>
+
+  <!-- Ícone de ações fora do conteúdo principal -->
+  <div class="pasta-acoes">
+    <img src="../assets/img/dots.svg" class="icone-acoes" data-id="${pasta.id}" />
+    <div class="menu-acoes" style="display: none;">
+      <button onclick="editarPasta(${pasta.id}, '${pasta.titulo}', '${pasta.descricao}')">Editar</button>
+      <button onclick="abrirModalConfirmacao(${pasta.id})">Excluir</button>
+    </div>
+  </div>
+`;
+
       grid.appendChild(card);
     });
 
@@ -157,12 +176,34 @@ async function carregarPastasNaTela() {
     window.addEventListener('click', () => {
       document.querySelectorAll('.menu-acoes').forEach(menu => menu.style.display = 'none');
     });
+
   } catch (err) {
     console.error('Erro ao carregar pastas (grid):', err);
   }
 }
 
-// CRUD de pasta (Editar e Excluir)
+async function deletarPasta(id) {
+  if (confirm('Tem certeza que deseja excluir esta pasta?')) {
+    const token = localStorage.getItem('token');
+    try {
+      const res = await fetch(`http://localhost:3000/pastas/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: 'Bearer ' + token }
+      });
+      if (res.ok) {
+        alert('Pasta excluída com sucesso!');
+        carregarPastasNaTela();
+      } else {
+        const result = await res.json();
+        alert('Erro ao excluir: ' + (result.error || 'Erro desconhecido.'));
+      }
+    } catch (err) {
+      console.error('Erro ao excluir pasta:', err);
+      alert('Erro inesperado.');
+    }
+  }
+}
+
 function editarPasta(id, titulo, descricao) {
   const novoTitulo = prompt('Editar título da pasta:', titulo);
   const novaDescricao = prompt('Editar descrição da pasta:', descricao);
@@ -170,23 +211,41 @@ function editarPasta(id, titulo, descricao) {
     const token = localStorage.getItem('token');
     fetch(`http://localhost:3000/pastas/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
       body: JSON.stringify({ titulo: novoTitulo, descricao: novaDescricao })
     })
     .then(res => res.json())
     .then(result => {
-      if (result.id) { alert('Pasta atualizada!'); carregarPastasNaTela(); }
-      else { alert('Erro ao atualizar pasta.'); }
+      if (result.id) {
+        alert('Pasta atualizada!');
+        carregarPastasNaTela();
+      } else {
+        alert('Erro ao atualizar pasta.');
+      }
     })
-    .catch(err => { console.error('Erro ao atualizar pasta:', err); alert('Erro inesperado.'); });
+    .catch(err => {
+      console.error('Erro ao atualizar pasta:', err);
+      alert('Erro inesperado.');
+    });
   }
 }
 
-// Modal de nova pasta
+// Modal nova pasta
 document.querySelector('.nova-pasta-btn').addEventListener('click', () => {
   document.getElementById('modalNovaPasta').style.display = 'flex';
 });
-function fecharModalNovaPasta() { document.getElementById('modalNovaPasta').style.display = 'none'; }
+
+// 🚀 Adiciona listener de fechar modais se existirem os elementos
+document.querySelectorAll('.modal-close').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.modal-overlay').forEach(modal => modal.style.display = 'none');
+  });
+});
+
+// Formulário de nova pasta
 document.getElementById('formNovaPasta').addEventListener('submit', async (e) => {
   e.preventDefault();
   const titulo = document.getElementById('titulo').value;
@@ -195,24 +254,38 @@ document.getElementById('formNovaPasta').addEventListener('submit', async (e) =>
   try {
     const response = await fetch('http://localhost:3000/pastas', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
+      },
       body: JSON.stringify({ titulo, descricao })
     });
     const result = await response.json();
-    if (response.ok) { alert('Pasta criada com sucesso!'); fecharModalNovaPasta(); carregarPastasNaTela(); }
-    else { alert('Erro ao criar pasta: ' + (result.error || 'Erro desconhecido.')); }
-  } catch (err) { console.error('Erro ao criar pasta:', err); alert('Erro inesperado ao criar pasta.'); }
+    if (response.ok) {
+      alert('Pasta criada com sucesso!');
+      fecharModalNovaPasta();
+      carregarPastasNaTela();
+    } else {
+      alert('Erro ao criar pasta: ' + (result.error || 'Erro desconhecido.'));
+    }
+  } catch (err) {
+    console.error('Erro ao criar pasta:', err);
+    alert('Erro inesperado ao criar pasta.');
+  }
 });
 
-// Confirmação de exclusão
+
 function abrirModalConfirmacao(id) {
   idPastaParaExcluir = id;
   document.getElementById('modalConfirmacao').style.display = 'flex';
 }
+
 function fecharModalConfirmacao() {
   document.getElementById('modalConfirmacao').style.display = 'none';
   idPastaParaExcluir = null;
 }
+
+// Adicionar evento ao botão de confirmação
 document.getElementById('confirmarExclusao').addEventListener('click', async () => {
   if (idPastaParaExcluir) {
     const token = localStorage.getItem('token');
@@ -221,20 +294,25 @@ document.getElementById('confirmarExclusao').addEventListener('click', async () 
         method: 'DELETE',
         headers: { Authorization: 'Bearer ' + token }
       });
-      const result = await res.json();
-      if (res.ok) { alert('Pasta excluída com sucesso!'); fecharModalConfirmacao(); carregarPastasNaTela(); }
-      else { alert('Erro ao excluir: ' + (result.error || 'Erro desconhecido.')); }
-    } catch (err) { console.error('Erro ao excluir pasta:', err); alert('Erro inesperado.'); }
+      if (res.ok) {
+        alert('Pasta excluída com sucesso!');
+        fecharModalConfirmacao();
+        carregarPastasNaTela();
+      } else {
+        const result = await res.json();
+        alert('Erro ao excluir: ' + (result.error || 'Erro desconhecido.'));
+      }
+    } catch (err) {
+      console.error('Erro ao excluir pasta:', err);
+      alert('Erro inesperado.');
+    }
   }
 });
 
-// Listener para fechar modais (qualquer X)
-document.querySelectorAll('.modal-close').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.modal-overlay').forEach(modal => modal.style.display = 'none');
-  });
-});
-
-// Expor função para HTML
-window.abrirModalConfirmacao = abrirModalConfirmacao;
 carregarPastasNaTela();
+
+window.abrirModalConfirmacao = (id) => {
+  idPastaParaExcluir = id;
+  document.getElementById('modalConfirmacao').style.display = 'flex';
+};
+
