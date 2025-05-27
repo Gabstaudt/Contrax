@@ -31,31 +31,27 @@
 
 
 
-      <div class="pasta-grid">
-        <!-- PASTAS -->
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">Clientes PJ</h2>
-              <p class="pasta-descricao">Contratos com empresas</p>
-              <p class="pasta-quantidade">12 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status ativo">10 ativos</p>
-        </div>
+      <div class="pasta-grid" id="pastaGrid"></div>
 
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
+  <!-- As pastas serão inseridas aqui dinamicamente -->
+</div>
+
+<div id="modalNovaPasta" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close" onclick="fecharModalNovaPasta()">&times;</span>
+    <h2>Criar Nova Pasta</h2>
+
+    <form id="formNovaPasta">
+      <label for="titulo">Título da pasta</label>
+      <input type="text" id="titulo" name="titulo" required>
+
+      <label for="descricao">Descrição</label>
+      <input type="text" id="descricao" name="descricao">
+
+      <button type="submit">Criar Pasta</button>
+    </form>
+  </div>
+</div>
 
 <div id="modalNovoContrato" class="modal-overlay" style="display: none;">
   <div class="modal-content">
@@ -63,109 +59,59 @@
     <h2>Novo Contrato</h2>
 
     <form id="formNovoContrato">
-      <label for="nome">Nome do contrato</label>
-      <input type="text" id="nome" name="nome" required>
+  <!-- campos de contrato -->
+  <label for="nome">Nome do contrato</label>
+  <input type="text" id="nome" name="nome" required>
 
-      <label for="data_criacao">Data de criação</label>
-      <input type="date" id="data_criacao" name="data_criacao">
+  <label for="data_criacao">Data de criação</label>
+  <input type="date" id="data_criacao" name="data_criacao">
 
-      <label for="data_vencimento">Data de vencimento</label>
-      <input type="date" id="data_vencimento" name="data_vencimento">
+  <label for="data_vencimento">Data de vencimento</label>
+  <input type="date" id="data_vencimento" name="data_vencimento">
 
-      <label for="valor">Valor</label>
-      <input type="number" id="valor" name="valor" step="0.01">
+  <label for="valor">Valor</label>
+  <input type="number" id="valor" name="valor" step="0.01">
 
-      <label for="status">Status</label>
-      <select id="status" name="status">
-        <option value="ativo">Ativo</option>
-        <option value="vencido">Vencido</option>
-        <option value="cancelado">Cancelado</option>
-      </select>
+  <label for="status">Status</label>
+  <select id="status" name="status">
+    <option value="ativo">Ativo</option>
+    <option value="vencido">Vencido</option>
+    <option value="cancelado">Cancelado</option>
+  </select>
 
-      <label for="partes">Partes</label>
-      <select id="partes" name="partes" multiple>
-        <!-- Preenchido dinamicamente -->
-      </select>
+  <label for="partes">Partes</label>
+  <select id="partes" name="partes" multiple>
+    <!-- preenchido dinamicamente -->
+  </select>
 
-      <label for="arquivo">Arquivo do contrato</label>
-      <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required>
+  <label for="arquivo">Arquivo do contrato</label>
+  <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx" required>
 
-      <button type="submit">Salvar Contrato</button>
-    </form>
+  <!-- 📁 Pasta -->
+  <label for="pasta">Selecionar pasta</label>
+  <select id="pasta" name="pasta">
+    <option value="">-- Selecione uma pasta --</option>
+    <!-- preenchido via JS -->
+  </select>
+
+  <button type="button" id="btnCriarPasta">+ Criar nova pasta</button>
+
+  <!-- Campos extras para criar pasta -->
+  <div id="novaPastaCampos" style="display: none; margin-top: 1rem;">
+    <label for="novaPastaTitulo">Título da nova pasta</label>
+    <input type="text" id="novaPastaTitulo" name="novaPastaTitulo">
+
+    <label for="novaPastaDescricao">Descrição da nova pasta</label>
+    <input type="text" id="novaPastaDescricao" name="novaPastaDescricao">
+  </div>
+
+  <button type="submit">Salvar Contrato</button>
+</form>
+
   </div>
 </div>
 
-        <!--  -->
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
-
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
-
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
-
-        <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
-
-             <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
-             <div class="pasta-card">
-          <div class="pasta-conteudo">
-            <img src="../assets/folder.svg" class="pasta-icone" />
-            <div class="pasta-texto">
-              <h2 class="pasta-nome">RH - Funcionários</h2>
-              <p class="pasta-descricao">Contratos internos</p>
-              <p class="pasta-quantidade">10 contratos</p>
-            </div>
-          </div>
-          <p class="pasta-status vencido">10 vencidos</p>
-        </div>
+  
 
       </div>
     </main>
